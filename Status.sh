@@ -47,7 +47,7 @@ swap="$(free -h | sed -n 3p | awk '{print $2}')"
 
 #Ubuntu version
 ubuntu="$(lsb_release -a | sed -n 2p | awk '{print $3, $4}')"
-if [ ! "$ubuntu" = "20.04.5 LTS" ]
+if [ ! "$ubuntu" = "20.04.5 LTS" && ! "$ubuntu" = "20.04.6 LTS" ]
 then
 ubuntu="\Zb\Z1$(lsb_release -a | sed -n 2p | awk '{print $3, $4}')\Zn"
 fi
@@ -148,7 +148,7 @@ Disk size: $disksz        $DiskUsedPercent used \n\
 Ubuntu: $ubuntu \n\
 HTTP & HTTPS:  $http \n\
 ------------------------------------------ \n\
-Nightscout on Google Cloud: 2023.04.26\n\
+Nightscout on Google Cloud: 2023.05.09\n\
 $Missing $Phase1 $rclocal_1 \n\n\
 /$uname/$repo/$branch\n\
 Swap: $swap \n\
