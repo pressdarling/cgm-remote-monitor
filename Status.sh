@@ -183,6 +183,9 @@ else
   apisec_problem="*" # Mark that the first and last characters (should be a pair of quoation marks) are not identical.
 fi
 
+# Show the first line of last reboot
+LastReboot=$(last reboot | head -1 | awk '{print $4, "", $5, $6, $7}')
+
 clear
 Choice=$(dialog --colors --nocancel --nook --menu "\
         \Zr Developed by the xDrip team \Zn\n\n\
@@ -194,15 +197,16 @@ Disk size: $disksz        $DiskUsedPercent used \n\
 Ubuntu: $ubuntu \n\
 HTTP & HTTPS:  $http \n\
 ------------------------------------------ \n\
-Google Cloud Nightscout  2023.10.27\n\
+Google Cloud Nightscout  2023.11.14\n\
 $apisec_problem $Missing $Phase1 $rclocal_1 $freedns_id_pass \n\n\
 /$uname/$repo/$branch\n\
 Swap: $swap \n\
 Mongo: $mongo \n\
+Ubuntu update: $LastReboot \n\
 NS proc: $ns \n\
 FreeDNS name and IP: $FD \n\
 Certificate: $cert \
- " 30 50 3\
+ " 31 50 3\
  "1" "Return"\
  "2" "Login credentials"\
  3>&1 1>&2 2>&3)
