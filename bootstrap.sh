@@ -122,9 +122,7 @@ else # If this is an existing installation.
 fi
 
 # Add log 
-rm -rf /tmp/Logs
-echo -e "Bootstrap completed     $(date)\n" | cat - /xDrip/Logs > /tmp/Logs
-sudo /bin/cp -f /tmp/Logs /xDrip/Logs
+/xDrip/scripts/AddLog.sh "Bootstrap completed" /xDrip/Logs
 
 # Bring up the status page
 /xDrip/scripts/Status.sh
