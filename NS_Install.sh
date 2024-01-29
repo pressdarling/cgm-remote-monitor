@@ -62,7 +62,5 @@ read -t 0.1 dummy
 done
 
 # Add log
-rm -rf /tmp/Logs
-echo -e "Installation phase 1 completed     $(date)\n" | cat - /xDrip/Logs > /tmp/Logs
-sudo /bin/cp -f /tmp/Logs /xDrip/Logs
- 
+/xDrip/scripts/AddLog.sh "Installation phase 1 completed" /xDrip/Logs
+  
