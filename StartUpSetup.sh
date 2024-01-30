@@ -30,4 +30,6 @@ wget -O /tmp/freedns.txt --retry-connrefused --waitretry=1 --read-timeout=20 --t
 exit 0 # This should be the last line to ensure the startup will complete.
 EOF
 
+# Add log
+/xDrip/scripts/AddLog.sh "Updated the startup file" /xDrip/Logs
 fi
