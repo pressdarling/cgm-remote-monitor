@@ -11,7 +11,7 @@ then
   exit 5
 fi
 
-sudo rm -rf /tmp/Logs
+sudo rm -rf /tmp/GCNS_Logs
 echo -e "$1     $(date)\n" | cat - $2 > /tmp/GCNS_Logs
 sudo /bin/cp -f /tmp/GCNS_Logs $2
 if [ $? != 0 ]
