@@ -48,6 +48,10 @@ EOF
   rm -rf /xDrip/FreeDNS_Fail # Clear the status page key
   fi
   done
+  
+  Add log
+  /xDrip/scripts/AddLog.sh "FreeDNS user ID and password have been recorded as reminders" /xDrip/Logs
+  
 else # If FreeDNS is down
   dialog --colors --msgbox "       \Zr Developed by the xDrip team \Zn\n\n\
 It seems the FreeDNS site is down.  Please try again when FreeDNS is back up." 9 50
