@@ -12,7 +12,7 @@ sudo apt-get update
 
 #Ubuntu upgrade available
 NextUbuntu="$(apt-get -s upgrade | grep 'Inst base' | awk '{print $4}' | sed 's/(//')"
-if [ "$NextUbuntu" = "11ubuntu5.7" ] # Only upgrade if we have tested the next release
+if [ "$NextUbuntu" = "11ubuntu5.8" ] # Only upgrade if we have tested the next release
 then
   sudo apt-get -y upgrade
 fi
