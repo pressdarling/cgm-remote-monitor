@@ -54,7 +54,7 @@ export AUTH_DEFAULT_ROLES='denied'
 export PUMP_FIELDS='reservoir battery clock'
 export DEVICESTATUS_ADVANCED='true'
 export THEME='colors'
-export DBSIZE_MAX='20000'
+export DBSIZE_MAX='15000'
 
 EOF
 
@@ -103,6 +103,7 @@ API_SECRET:   $cs\n\n\
 Press escape to keep it, or enter a new API_SECRET with at least 12 characters excluding the following.\n\
   $   \"   '   \\   SPACE   @   / " 16 50 0 "API_SECRET:" 1 1 "$secr" 1 14 25 0 2>&1 1>&3)
 response=$?
+clear
 if [ $response = 255 ] || [ $response = 1 ] # cancled or escaped
 then
   ns="$cs"
@@ -174,6 +175,7 @@ clear
 
 dialog --colors --msgbox "       \Zr Developed by the xDrip team \Zn\n\n\
 Press enter to restart the server.  This will result in an expected error message.  Wait 30 seconds before clicking on retry to reconnect or using a browser to access your Nightscout." 10 50
+clear
 sudo reboot
 fi
  
