@@ -31,15 +31,10 @@ mkswap /var/SWAP
 fi
 swapon 2>/dev/null /var/SWAP
 
-echo "Installing system basics"
-sudo apt-get update
-sudo apt-get -y install wget gnupg libcurl4 openssl liblzma5
-sudo apt-get -y install dirmngr apt-transport-https lsb-release ca-certificates
-sudo apt-get -y install net-tools
-sudo apt-get -y install build-essential
-# Please don't add any more utilities here.  Please instead, add them to update_packages.sh.
-
+# Please don't add any utility installs here.  Please instead, add them to update_packages.sh.
 /xDrip/scripts/update_packages.sh
+
+sudo apt-get update
 
 # Create mongo user and admin.
 echo -e "use Nightscout\ndb.createUser({user: \"username\", pwd: \"password\", roles:[\"readWrite\"]})\nquit()" | mongo
