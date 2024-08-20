@@ -22,6 +22,8 @@ Press Enter to execute the highlighted option.\n\n" 18 50 8\
  "8" "Exit to shell (terminal)"\
  3>&1 1>&2 2>&3)
 
+ clear
+
 case $Choice in
 
 1)
@@ -29,7 +31,6 @@ case $Choice in
 ;;
 
 2)
-clear
 dialog --colors --title "\Zr Developed by the xDrip team \Zn"   --textbox /xDrip/Logs 26 74 
 ;;
 
