@@ -113,6 +113,10 @@ fi
 
 # Node
 node="$(node -v)"
+if [ ! "${node%%.*}" = "v16" ] # If node version is any other than v16
+then
+node="\Zb\Z1$(node -v)\Zn" 
+fi
 
 # Verify that the latest added package has been installed
 # The utility must be the last added utility to the update_packages.sh file.
@@ -200,7 +204,7 @@ Disk size: $disksz        $DiskUsedPercent used \n\
 Ubuntu: $ubuntu \n\
 HTTP & HTTPS:  $http \n\
 ------------------------------------------ \n\
-Google Cloud Nightscout  2024.08.20\n\
+Google Cloud Nightscout  2024.08.28\n\
 $apisec_problem $Missing $Phase1 $rclocal_1 $freedns_id_pass \n\n\
 /$uname/$repo/$branch\n\
 Swap: $swap \n\
