@@ -111,6 +111,13 @@ else
 cert="Valid"
 fi
 
+# Node
+node="$(node -v)"
+if [ ! "${node%%.*}" = "v16" ] # If node version is any other than v16
+then
+node="\Zb\Z1$(node -v)\Zn" 
+fi
+
 # Verify that the latest added package has been installed
 # The utility must be the last added utility to the update_packages.sh file.
 Missing=""
@@ -197,16 +204,17 @@ Disk size: $disksz        $DiskUsedPercent used \n\
 Ubuntu: $ubuntu \n\
 HTTP & HTTPS:  $http \n\
 ------------------------------------------ \n\
-Google Cloud Nightscout  2024.02.24\n\
+Google Cloud Nightscout  2024.08.28\n\
 $apisec_problem $Missing $Phase1 $rclocal_1 $freedns_id_pass \n\n\
 /$uname/$repo/$branch\n\
 Swap: $swap \n\
-Mongo: $mongo \n\
 Ubuntu update: $LastReboot \n\
+Node: $node \n\
+Mongo: $mongo \n\
 NS proc: $ns \n\
 FreeDNS name and IP: $FD \n\
 Certificate: $cert \
- " 31 50 3\
+ " 32 50 3\
  "1" "Return"\
  "2" "Login credentials"\
  3>&1 1>&2 2>&3)

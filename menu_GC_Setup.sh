@@ -18,6 +18,8 @@ Press Enter to execute the highlighted option.\n" 17 50 7\
  "7" "Return"\
  3>&1 1>&2 2>&3)
 
+ clear
+
 case $Choice in
 
 1)
@@ -36,9 +38,9 @@ sudo git pull  # Update database from remote.
 sudo chmod 755 update_scripts.sh
 sudo cp -f update_scripts.sh /xDrip/scripts/. # Update the "update scripts" script. 
 clear
-sudo /xDrip/scripts/update_scripts.sh
-sudo /xDrip/scripts/update_packages.sh
-sudo /xDrip/scripts/StartUpSetup.sh
+/xDrip/scripts/update_scripts.sh
+/xDrip/scripts/update_packages.sh
+/xDrip/scripts/StartUpSetup.sh
 clear
 dialog --colors --msgbox "        \Zr Developed by the xDrip team \Zn\n\n\
 Close this terminal to complete updates." 7 50
@@ -53,7 +55,7 @@ curl https://raw.githubusercontent.com/jamorham/nightscout-vps/vps-dev/bootstrap
 ;;
 
 6)
-sudo /xDrip/scripts/update_FreeDNSCredentials.sh
+/xDrip/scripts/update_FreeDNSCredentials.sh
 ;;
 
 7)
