@@ -12,8 +12,7 @@ Press Enter to execute the highlighted option.\n" 17 50 7\
  "1" "Install Nightscout phase 1 - 15 minutes"\
  "2" "Install Nightscout phase 2 - 5 minutes"\
  "3" "Update platform"\
- "4" "Enter FreeDNS ID and password"\
- "5" "Return"\
+ "4" "Return"\
  3>&1 1>&2 2>&3)
 
  clear
@@ -45,10 +44,6 @@ Close this terminal to complete updates." 7 50
 ;;
 
 4)
-/xDrip/scripts/update_FreeDNSCredentials.sh
-;;
-
-5)
 ;;
 
 esac
