@@ -23,7 +23,7 @@ exec 3>&1
 
 # Ask for the fork details. 
 clear
-VALUES=$(dialog --colors --ok-label "Submit" --form "     \Zr Developed by the xDrip team \Zn\n\n Enter the GitHub details for the Nightscout version you want to install.\n" 14 50 0 "User ID:" 1 1 "$user" 1 14 25 0 "Repository:" 2 1 "$repo" 2 14 25 0 "Branch:" 3 1 "$brnch" 3 14 25 0 2>&1 1>&3)
+VALUES=$(dialog --colors --ok-label "Submit" --form "     \Zr Developed by the xDrip team \Zn\n\n Enter the GitHub details for the Nightscout version you wish to install.\n" 14 50 0 "User ID:" 1 1 "$user" 1 14 25 0 "Repository:" 2 1 "$repo" 2 14 25 0 "Branch:" 3 1 "$brnch" 3 14 25 0 2>&1 1>&3)
 response=$?
 if [ $response = 255 ] || [ $response = 1 ] # Exit if escaped or cancelled
 then
@@ -42,7 +42,7 @@ if [ "$user" = "" ] || [ "$repo" = "" ] || [ "$brnch" = "" ] # Abort if either p
 then
   go_back=1
   clear
-  dialog --colors --msgbox "     \Zr Developed by the xDrip team \Zn\n\nYou need to enter all three parameters.  Try again."  8 50
+  dialog --colors --msgbox "     \Zr Developed by the xDrip team \Zn\n\nYou need to enter all three parameters.  Please try again."  8 50
 fi
 if [ $go_back -lt 1 ]
 then
@@ -133,4 +133,5 @@ EOF
 /xDrip/scripts/AddLog.sh "Nightscout customization completed" /xDrip/Logs
 
 sudo reboot # Reboot so that Nightscout starts.
+
  
