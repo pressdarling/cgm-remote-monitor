@@ -1,6 +1,6 @@
 #!/bin/bash
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
-# curl https://raw.githubusercontent.com/Navid200/cgm-remote-monitor/ub24_Test8Clean/bootstrap.sh | bash
+# curl https://raw.githubusercontent.com/Navid200/cgm-remote-monitor/ub24_Test9/bootstrap.sh | bash
 
 echo 
 echo "Bootstrapping the installation files - JamOrHam - Navid200"
@@ -83,7 +83,7 @@ ls > /tmp/repo
 sudo mv -f /tmp/repo .    # The repository name is now in /srv/repo
 cd "$(< repo)"
 #sudo git checkout vps-1  # ✅✅✅✅✅ Main - Uncomment before PR.
-sudo git checkout ub24_Test8Clean  # ⛔⛔⛔⛔⛔ For test - Comment out before PR.
+sudo git checkout ub24_Test9  # ⛔⛔⛔⛔⛔ For test - Comment out before PR.
 
 sudo git branch > /tmp/branch
 grep "*" /tmp/branch | awk '{print $2}' > /tmp/brnch
