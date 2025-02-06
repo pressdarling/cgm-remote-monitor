@@ -17,7 +17,7 @@ if [ "$(file -b "$File")" = "directory" ] # If no file has been selected.
 then
   clear
   dialog --colors --msgbox "       \Zr Developed by the xDrip team \Zn\n\n\
-You need to move the cursor over the filename in the right pane and press space so that it is shown in the field at the bottom. Then, press enter.\n\
+Move the cursor over the filename in the right pane and press Space to display it in the field at the bottom. Then, press Enter.\n\
 Please try again." 11 50
 goback=1 # Don't execute the remaining part of the loop
 fi
@@ -29,7 +29,7 @@ then
     if [ ! "$(tar -tf $File 'database.gz')" = "database.gz" ] || [ ! "$(tar -tf $File 'nsconfig')" = "nsconfig" ]
     then
       clear
-      dialog --colors --msgbox "       \Zr Developed by the xDrip team \Zn\n\nThe backup file may be corrupt.  Please report." 10 50
+      dialog --colors --msgbox "       \Zr Developed by the xDrip team \Zn\n\nThe backup file may be corrupt.  Please report this issue." 10 50
       goback=1 # Don't execute the rest of the loop
     fi
     if [ $goback -eq 0 ]
@@ -79,15 +79,15 @@ esac
         clear
         if [ $fail = 1 ]
         then
-          dialog --colors --msgbox "       \Zr Developed by the xDrip team \Zn\n\nThe database import failed.  Please report." 8 50
+          dialog --colors --msgbox "       \Zr Developed by the xDrip team \Zn\n\nThe database import failed.  Please report the issue." 8 50
         else # If the database was successfully imported
           echo -e "Restored MongoDB     $(date)\n" | cat - /xDrip/Logs > /tmp/Logs
           sudo /bin/cp -f /tmp/Logs /xDrip/Logs
           if [ $var -lt 1 ] # If the user chose not to restore the variables
           then
-            dialog --colors --msgbox "       \Zr Developed by the xDrip team \Zn\n\nDatabase has been imported.\nThe variables will not be restored.  But, you can view them at /tmp/nsconfig." 9 50
+            dialog --colors --msgbox "       \Zr Developed by the xDrip team \Zn\n\nDatabase has been imported.\nThe variables will not be restored, but you can view them at /tmp/nsconfig." 9 50
           else # If the user chose to also restore the variables
-            dialog --colors --msgbox "       \Zr Developed by the xDrip team \Zn\n\nDatabase has been imported." 8 50
+            dialog --colors --msgbox "       \Zr Developed by the xDrip team \Zn\n\nThe database has been successfully imported." 8 50
           fi
         fi
       fi
@@ -111,7 +111,7 @@ then
   then
     clear
     dialog --colors --msgbox "       \Zr Developed by the xDrip team \Zn\n\n\
-The backup only contains a database.  Press enter to import it." 9 50
+The backup only contains a database.  Press Enter to import it." 9 50
     key=$?
     if [ $key = 255 ]
     then
@@ -122,10 +122,10 @@ The backup only contains a database.  Press enter to import it." 9 50
     fail=$?
     if [ $fail -eq 1 ]
     then
-      dialog --colors --msgbox "       \Zr Developed by the xDrip team \Zn\n\nDatabase import failed.  Please report." 11 50
+      dialog --colors --msgbox "       \Zr Developed by the xDrip team \Zn\n\nThe database import failed. Please report the issue." 11 50
       exit
     else
-      dialog --colors --msgbox "       \Zr Developed by the xDrip team \Zn\n\nDatabase has been imported." 8 50
+      dialog --colors --msgbox "       \Zr Developed by the xDrip team \Zn\n\nThe database has been successfully imported." 8 50
       echo -e "Restored MongoDB     $(date)\n" | cat - /xDrip/Logs > /tmp/Logs
       sudo /bin/cp -f /tmp/Logs /xDrip/Logs
       exit
@@ -133,4 +133,5 @@ The backup only contains a database.  Press enter to import it." 9 50
   fi
 fi
 done
+
  
