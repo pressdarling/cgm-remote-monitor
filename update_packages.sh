@@ -22,17 +22,8 @@ whichpack=$(which gpg)
 if [ "$whichpack" = "" ]
 then
   sudo apt-get -y install jq net-tools gnupg
+  # The last item on the above list of packages must be verified in Status.sh to have been installed.
 fi 
-
-# node - We install version 16 of node here, which automatically  updates npm to 8.
-whichpack=$(node -v)
-if [ ! "${whichpack%%.*}" = "v16" ]
-then
-sudo /xDrip/scripts/nodesource_setup.sh
-sudo apt-get install nodejs -y
-# Nightscout needs version 6 of npm.  So, we are going to install that version now effectivwely downgrading it.  
-sudo npm install -g npm@6.14.18
-fi
 
 # mongo
 whichpack="$(mongod --version | sed -n 1p)"
@@ -50,16 +41,20 @@ then
   echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
   echo "mongodb-org-tools hold" | sudo dpkg --set-selections
 
-  sudo systemctl start mongod
-  sudo systemctl enable mongod
-
-  # Create mongo user and admin.
-  echo -e "use Nightscout\ndb.createUser({user: \"username\", pwd: \"password\", roles:[\"readWrite\"]})\nquit()" | mongosh
-  echo -e "use admin\ndb.createUser({ user: \"mongoadmin\" , pwd: \"mongoadmin\", roles: [\"userAdminAnyDatabase\", \"dbAdminAnyDatabase\", \"readWriteAnyDatabase\"]})\nquit()" | mongosh
+  systemctl start mongod
+  systemctl enable mongod
 
 fi
 
-# The last item on the above list of packages must be verified in Status.sh to have been installed.  
+# node - We install version 16 of node here, which automatically  updates npm to 8.
+whichpack=$(node -v)
+if [ ! "${whichpack%%.*}" = "v16" ]
+then
+sudo /xDrip/scripts/nodesource_setup.sh
+sudo apt-get install nodejs -y
+# Nightscout needs version 6 of npm.  So, we are going to install that version now effectivwely downgrading it.  
+sudo npm install -g npm@6.14.18
+fi
 
 # Add log
 /xDrip/scripts/AddLog.sh "The packages have been installed" /xDrip/Logs
