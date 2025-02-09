@@ -36,7 +36,12 @@ swapon 2>/dev/null /var/SWAP
 
 apt-get update
 
-cd /srv
+# Create mongo user and admin.
+wait  # Wait for all background processes to complete
+echo -e "use Nightscout\ndb.createUser({user: \"username\", pwd: \"password\", roles:[\"readWrite\"]})\nquit()" | mongosh 
+wait  # Wait for all background processes to complete
+echo -e "use admin\ndb.createUser({ user: \"mongoadmin\" , pwd: \"mongoadmin\", roles: [\"userAdminAnyDatabase\", \"dbAdminAnyDatabase\", \"readWriteAnyDatabase\"]})\nquit()" | mongosh 
+cd /srv 
 
 echo "Installing Nightscout"
 cd "$(< repo)" 
