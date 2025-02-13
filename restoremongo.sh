@@ -17,7 +17,7 @@ if [ "$(file -b "$File")" = "directory" ] # If no file has been selected.
 then
   clear
   dialog --colors --msgbox "       \Zr Developed by the xDrip team \Zn\n\n\
-Move the cursor over the filename in the right pane and press Space to display it in the field at the bottom. Then, press Enter.\n\
+Select the file in the right pane and press Space to display it in the field at the bottom. Then, click OK or press Enter.\n\
 Please try again." 11 50
 goback=1 # Don't execute the remaining part of the loop
 fi
@@ -41,8 +41,8 @@ then
       clear
       Choice=$(dialog --colors --nocancel --nook --menu "\
         \Zr Developed by the xDrip team \Zn\n\n\
-Use the arrow keys to move the cursor.\n\
-Press Enter to execute the highlighted option.\n" 14 50 4\
+Click OK or press Enter to select the highlighted option.\n\n\
+Restoring variables will overwrite API_SECRET." 16 50 4\
  "1" "Restore MongoDB only"\
  "2" "Restore variables only"\
  "3" "Restore MongoDB and variables"\
