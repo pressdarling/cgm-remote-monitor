@@ -82,7 +82,7 @@ sudo git clone https://github.com/jamorham/nightscout-vps.git  # ✅✅✅✅✅
 ls > /tmp/repo
 sudo mv -f /tmp/repo .    # The repository name is now in /srv/repo
 cd "$(< repo)"
-sudo git checkout vps-dev  # ✅✅✅✅✅ Main - Uncomment before PR.
+sudo git checkout vps-2  # ✅✅✅✅✅ Main - Uncomment before PR.
 #sudo git checkout No_ok_Reboot_counter  # ⛔⛔⛔⛔⛔ For test - Comment out before PR.
 
 sudo git branch > /tmp/branch
