@@ -205,7 +205,7 @@ Disk size: $disksz        $DiskUsedPercent used \n\
 Ubuntu: $ubuntu \n\
 HTTP & HTTPS:  $http \n\
 ------------------------------------------ \n\
-Google Cloud Nightscout  2025.02.10\n\
+Google Cloud Nightscout  2025.02.14\n\
 $apisec_problem $Missing $Phase1 $rclocal_1 $freedns_id_pass \n\n\
 /$uname/$repo/$branch\n\
 Swap: $swap \n\
@@ -233,6 +233,9 @@ Hostname:  $HOSTNAME\n\
 API_SECRET: $apisec\n\n\
 FreeDNS User ID: $freedns_id\n\
 FreeDNS password: $freedns_pass" 13 50
+tput civis
+read -p "" -n1 -s
+tput cnorm
 ;;
 esac
 
