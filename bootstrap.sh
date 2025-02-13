@@ -1,6 +1,6 @@
 #!/bin/bash
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
-# curl https://raw.githubusercontent.com/Navid200/cgm-remote-monitor/ub24_Test9/bootstrap.sh | bash
+# curl https://raw.githubusercontent.com/Navid200/cgm-remote-monitor/No_ok_Reboot_counter/bootstrap.sh | bash
 
 echo 
 echo "Bootstrapping the installation files - JamOrHam - Navid200"
@@ -43,11 +43,11 @@ exit
 fi
 fi
 
-if [[ ! "$ubversion" == "24.04"* ]] || [[ ! "$(which vi)" == "" ]] # If the selected version of ubuntu is not what we want or if the main version has been installed instead of minimal
+if [[ ! "$ubversion" == "24.04"* ]] || [[ ! "$(which tbl)" == "" ]] # If the selected version of ubuntu is not what we want or if the main version has been installed instead of minimal
 then
   clear
   dialog --colors --msgbox "       \Zr Developed by the xDrip team \Zn\n\n\
-The Ubuntu version on the virtual machine is incorrect. You will need to delete the virtual machine and create a new one. Please refer to the guide for detailed instructions." 10 50  
+The Ubuntu installation option is incorrect. Please refer to the guide for detailed instructions." 9 50  
   exit
 fi 
 
@@ -82,8 +82,8 @@ sudo git clone https://github.com/jamorham/nightscout-vps.git  # ✅✅✅✅✅
 ls > /tmp/repo
 sudo mv -f /tmp/repo .    # The repository name is now in /srv/repo
 cd "$(< repo)"
-sudo git checkout vps-2  # ✅✅✅✅✅ Main - Uncomment before PR.
-#sudo git checkout ub24_Test9  # ⛔⛔⛔⛔⛔ For test - Comment out before PR.
+sudo git checkout vps-dev  # ✅✅✅✅✅ Main - Uncomment before PR.
+#sudo git checkout No_ok_Reboot_counter  # ⛔⛔⛔⛔⛔ For test - Comment out before PR.
 
 sudo git branch > /tmp/branch
 grep "*" /tmp/branch | awk '{print $2}' > /tmp/brnch
