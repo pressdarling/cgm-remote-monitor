@@ -18,5 +18,7 @@ heroku config -a $APP_NAME -s| grep -v  "STORAGE_URI\|MONGO_CONNECTION\|MONGO$\|
 sed -i 's/\\n/\
 /g' heroku_vars.txt
 
-echo "new vars are in the file heroku_vars.txt."
-echo "Please look at it, and if all is ok, try copying it to /etc/nsconfig"
+echo "The Heroku variables are in the file heroku_vars.txt."
+## echo "Please look at it, and if all is ok, try copying it to /etc/nsconfig" 
+
+  

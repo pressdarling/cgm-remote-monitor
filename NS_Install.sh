@@ -13,8 +13,8 @@ fi
 
 clear
 dialog --colors --msgbox "      \Zr Developed by the xDrip team \Zn\n\n\
-Some required packages will be installed now.  It will take about 15 minutes to complete.  This terminal needs to be kept open.  Press enter to proceed.\n\n\
-If this is not a good time, you can press escape now to cancel." 13 50
+The required packages will now be installed.  This process will take approximately 16 minutes to complete.  Please keep this terminal open during the installation.  Press Enter to proceed.\n\n\
+If this is not a convenient time, press ESC to cancel." 14 50
 if [ $? = 255 ]
 then
 clear
@@ -34,22 +34,23 @@ swapon 2>/dev/null /var/SWAP
 # Please don't add any utility installs here.  Please instead, add them to update_packages.sh.
 /xDrip/scripts/update_packages.sh
 
-sudo apt-get update
+apt-get update
 
 # Create mongo user and admin.
-echo -e "use Nightscout\ndb.createUser({user: \"username\", pwd: \"password\", roles:[\"readWrite\"]})\nquit()" | mongo
-echo -e "use admin\ndb.createUser({ user: \"mongoadmin\" , pwd: \"mongoadmin\", roles: [\"userAdminAnyDatabase\", \"dbAdminAnyDatabase\", \"readWriteAnyDatabase\"]})\nquit()" | mongo
-
-cd /srv
+wait  # Wait for all background processes to complete
+echo -e "use Nightscout\ndb.createUser({user: \"username\", pwd: \"password\", roles:[\"readWrite\"]})\nquit()" | mongosh 
+wait  # Wait for all background processes to complete
+echo -e "use admin\ndb.createUser({ user: \"mongoadmin\" , pwd: \"mongoadmin\", roles: [\"userAdminAnyDatabase\", \"dbAdminAnyDatabase\", \"readWriteAnyDatabase\"]})\nquit()" | mongosh 
+cd /srv 
 
 echo "Installing Nightscout"
 cd "$(< repo)" 
-sudo git reset --hard  # delete any local edits.
-sudo git pull  # Update database from remote.
+git reset --hard  # delete any local edits.
+git pull  # Update database from remote.
 
-sudo npm install
+npm install
 # sudo npm run postinstall
-sudo npm run-script post-generate-keys
+npm run-script post-generate-keys
 
 for loop in 1 2 3 4 5 6 7 8 9
 do
@@ -58,4 +59,7 @@ done
 
 # Add log
 /xDrip/scripts/AddLog.sh "Installation phase 1 completed" /xDrip/Logs
+
+/xDrip/scripts/reboot.sh 
+
   
