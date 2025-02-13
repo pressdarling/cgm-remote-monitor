@@ -7,8 +7,7 @@ echo
 clear
 Choice=$(dialog --colors --nocancel --nook --menu "\
         \Zr Developed by the xDrip team \Zn\n\n
-Use the arrow keys to move the cursor.\n\
-Press Enter to execute the highlighted option.\n" 17 50 7\
+Click OK or press Enter to select the highlighted option.\n" 14 50 7\
  "1" "Install Nightscout phase 1 - 16 minutes"\
  "2" "Install Nightscout phase 2 - 10 minutes"\
  "3" "Update"\
@@ -48,7 +47,7 @@ else
   /xDrip/scripts/StartUpSetup.sh
   clear
   dialog --colors --msgbox "        \Zr Developed by the xDrip team \Zn\n\n\
-Close this terminal to complete updates." 7 50
+Close this SSH window to complete updates." 7 50
 fi
 ;;
 
