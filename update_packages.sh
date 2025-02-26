@@ -11,11 +11,11 @@ sudo snap set system refresh.retain=2
 sudo apt-get update
 
 #Ubuntu upgrade available
-#NextUbuntu="$(apt-get -s upgrade | grep 'Inst base' | awk '{print $4}' | sed 's/(//')"
-#if [ "$NextUbuntu" = "11ubuntu5.8" ] # Only upgrade if we have tested the next release
-#then
-#  sudo apt-get -y upgrade
-#fi
+NextUbuntu="$(apt-get -s upgrade | grep 'Inst base' | awk '{print $4}' | sed 's/(//')"
+if [ "$NextUbuntu" = "13ubuntu10.2" ] # Only upgrade if we have tested the next release (24.04.2)
+then
+  sudo apt-get -y upgrade
+fi
 
 # packages
 whichpack=$(which gpg)
