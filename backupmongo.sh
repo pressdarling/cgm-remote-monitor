@@ -7,8 +7,8 @@ echo
 while :
 do
 exec 3>&1
-Filename=$(dialog --colors --ok-label "Submit" --form "       \Zr Developed by the xDrip team \Zn\n\n\n\
-Enter a name for the backup file" 11 50 0 "file name" 1 1 "$filename" 1 14 25 0 2>&1 1>&3)
+Filename=$(dialog --colors --ok-label "Submit" --form "       \Zr Developed by the xDrip team \Zn\n\n\
+Enter a name for the backup file and submit." 9 50 0 "file name" 1 1 "$filename" 1 14 25 0 2>&1 1>&3)
  response=$?
 if [ $response = 255 ] || [ $response = 1 ]
 then

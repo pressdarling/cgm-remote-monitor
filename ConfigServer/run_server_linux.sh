@@ -30,6 +30,8 @@ else
 export HOSTNAME=$(ls /etc/letsencrypt/live | grep -v README)
 fi
 
+export printfVar="https://$HOSTNAME:3389/variables?token=$ENV_TOKEN"
+
 python3 $SCRIPT_DIR/manage.py migrate  >> /tmp/variables_log 2>&1
 
 #make sure to put this after the migrate, as the migrate might fail.
@@ -37,15 +39,50 @@ export KILL_AFTER_IDLE_TIME=900
 
 CERT_LOCATION="/etc/letsencrypt/live/"$HOSTNAME
 
-echo
-echo PLEASE CONNECT TO https://$HOSTNAME:3389/variables?token=$ENV_TOKEN
-echo "The server will run for 15 minutes, and after that will stop (if not used). Press ctrl C to stop it before that."
-echo
+# echo PLEASE CONNECT TO https://$HOSTNAME:3389/variables?token=$ENV_TOKEN
+
+# echo "PLEASE CONNECT TO $printfVar"
+# echo "env_token is: $ENV_TOKEN"
+# echo "hostname: $HOSTNAME"
+
+clear
+   dialog --colors --no-shadow --infobox "Press ENTER to return to the main menu." 3 46
+
+# tput civis
+
+printf '\e[1;44m%-6s\e[m' 
+printf '\n'
+printf '\e[1;44m%-6s\e[m' " "
+printf '                                                                   \n'
+printf '\e[1;44m%-6s\e[m' " "
+printf '                    Developed by the xDrip team                    \n'
+printf '\e[1;44m%-6s\e[m' " "
+printf '                                                                   \n'
+printf '\e[1;44m%-6s\e[m' " "
+printf '                                                                   \n'
+printf '\e[1;44m%-6s\e[m' " "
+printf '  Click on this \e]8;;%s\e\\link\e]8;;\e\\ to open a web page for editing variables.     \n' "$printfVar"
+printf '\e[1;44m%-6s\e[m' " "
+printf '                                                                   \n'
+printf '\e[1;44m%-6s\e[m' " "
+printf '                                                                   \n'
+printf '\e[1;44m%-6s\e[m' " "
+printf '  The server will run for 15 minutes and then stop if not used.    \n'
+printf '\e[1;44m%-6s\e[m' " "
+printf '  Press Ctrl + C to stop it earlier.                               \n'
+printf '\e[1;44m%-6s\e[m' " "
+printf '                                                                   \n'
+
+
+# read -p "" -n1 -s
+# tput cnorm
+# echo "The server will run for 15 minutes, and after that will stop (if not used). Press ctrl C to stop it before that."
+# echo
 
 #python3 manage.py runserver 0.0.0.0:3389  >> /tmp/variables_log 2>&1
 python3 $SCRIPT_DIR/manage.py runserver_plus 0.0.0.0:3389 --cert-file $CERT_LOCATION/cert.pem --key-file $CERT_LOCATION/privkey.pem  >> /tmp/variables_log 2>&1 &
 
-echo press any key to return to the menu. The server will continue to run for 15 minutes until stoped.
+# echo press any key to return to the menu. The server will continue to run for 15 minutes until stoped.
 read
 
  

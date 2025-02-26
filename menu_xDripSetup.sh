@@ -7,8 +7,7 @@ echo
 clear
 Choice=$(dialog --colors --nocancel --nook --menu "\
         \Zr Developed by the xDrip team \Zn\n\n\
-Use the arrow keys to move the cursor.\n\
-Press Enter to execute the highlighted option.\n" 12 50 2\
+Click OK or press Enter to select the highlighted option.\n" 12 50 2\
  "1" "QR code to make xDrip master"\
  "2" "Return"\
  3>&1 1>&2 2>&3)
