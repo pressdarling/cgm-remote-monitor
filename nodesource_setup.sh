@@ -113,6 +113,7 @@ install_pre_reqs() {
     log "Installing pre-requisites" "info"
 
     # Run 'apt-get update'
+    /xDrip/scripts/wait_4_completion.sh
     if ! apt-get update -y; then
         handle_error "$?" "Failed to run 'apt-get update'"
     fi

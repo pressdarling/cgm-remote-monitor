@@ -12,8 +12,6 @@ echo "Cannot continue."
 exit 5
 fi
 
-sudo apt-get install bind9-dnsutils -y
-
 echo
 echo "Move to use free dns instead of noip.com - tzachi-dar"
 echo
