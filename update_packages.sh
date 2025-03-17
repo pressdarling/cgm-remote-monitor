@@ -22,6 +22,7 @@ fi
 whichpack=$(which gpg)
 if [ "$whichpack" = "" ]
 then
+  /xDrip/scripts/wait_4_completion.sh
   sudo apt-get -y install jq net-tools gnupg
   # The last item on the above list of packages must be verified in Status.sh to have been installed.
 fi 
@@ -44,6 +45,7 @@ then
   echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
   echo "mongodb-org-tools hold" | sudo dpkg --set-selections
 
+  /xDrip/scripts/wait_4_completion.sh
   systemctl start mongod
   systemctl enable mongod
 
