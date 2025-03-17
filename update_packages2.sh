@@ -12,7 +12,9 @@ if [ "$whichpack" = "" ]
 then
   /xDrip/scripts/wait_4_completion.sh
   sudo apt-get update
-  sudo apt-get -y install screen nano qrencode file vis lsb-release apt-transport-https ca-certificates python3-pip bind9-dnsutils
+  /xDrip/scripts/wait_4_completion.sh
+  sudo apt-get -y install screen nano qrencode file vis lsb-release apt-transport-https ca-certificates python3-pip bind9-dnsutils nginx python3-certbot-nginx inetutils-ping 
+  /xDrip/scripts/wait_4_completion.sh
   sudo apt -y install python3-django python3-django-extensions python3-werkzeug python3-qrcode
 fi 
 
