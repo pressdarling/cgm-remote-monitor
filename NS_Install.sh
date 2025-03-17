@@ -35,10 +35,14 @@ swapon 2>/dev/null /var/SWAP
 /xDrip/scripts/update_packages.sh
 
 # Create mongo user and admin.
-wait  # Wait for all background processes to complete
-echo -e "use Nightscout\ndb.createUser({user: \"username\", pwd: \"password\", roles:[\"readWrite\"]})\nquit()" | mongosh 
-wait  # Wait for all background processes to complete
-echo -e "use admin\ndb.createUser({ user: \"mongoadmin\" , pwd: \"mongoadmin\", roles: [\"userAdminAnyDatabase\", \"dbAdminAnyDatabase\", \"readWriteAnyDatabase\"]})\nquit()" | mongosh 
+/xDrip/scripts/wait_4_completion.sh
+
+wait  # Wait for background processes to complete
+mongosh Nightscout --eval 'db.createUser({user: "username", pwd: "password", roles:["readWrite"]})'
+
+wait  # Wait for background processes to complete
+mongosh admin --eval 'db.createUser({user: "mongoadmin", pwd: "mongoadmin", roles:["userAdminAnyDatabase", "dbAdminAnyDatabase", "readWriteAnyDatabase"]})'
+
 cd /srv 
 
 echo "Installing Nightscout"
