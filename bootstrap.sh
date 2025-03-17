@@ -1,6 +1,6 @@
 #!/bin/bash
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
-# curl https://raw.githubusercontent.com/Navid200/cgm-remote-monitor/Wait_for_completion/bootstrap.sh | bash
+# curl https://raw.githubusercontent.com/Navid200/cgm-remote-monitor/MoreWaits_Test/bootstrap.sh | bash
 
 echo 
 echo "Bootstrapping the installation files - JamOrHam - Navid200"
@@ -68,6 +68,7 @@ The Ubuntu installation option is incorrect. Please refer to the guide for detai
   exit
 fi 
 
+clear
 dialog --colors --yesno "              \Zr Google Cloud Nightscout \Zn\n\n\n\
 This software and its associated online instructions are provided “as is,” without any warranties, express or implied. By using this software, you accept full responsibility and assume all risks associated with its use.\n\n\
 The developers and contributors shall not be held liable for any damages, losses, or other consequences arising from the use of this software or its documentation.\n\n\
@@ -102,7 +103,7 @@ ls > /tmp/repo
 sudo mv -f /tmp/repo .    # The repository name is now in /srv/repo
 cd "$(< repo)"
 sudo git checkout vps-dev  # ✅✅✅✅✅ Main - Uncomment before PR.
-#sudo git checkout Wait_for_completion  # ⛔⛔⛔⛔⛔ For test - Comment out before PR.
+#sudo git checkout MoreWaits_Test  # ⛔⛔⛔⛔⛔ For test - Comment out before PR.
 
 sudo git branch > /tmp/branch
 grep "*" /tmp/branch | awk '{print $2}' > /tmp/brnch
