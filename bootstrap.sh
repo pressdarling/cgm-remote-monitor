@@ -1,6 +1,6 @@
 #!/bin/bash
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
-# curl https://raw.githubusercontent.com/Navid200/cgm-remote-monitor/No_ok_Reboot_counter/bootstrap.sh | bash
+# curl https://raw.githubusercontent.com/Navid200/cgm-remote-monitor/MoreWaits_Test/bootstrap.sh | bash
 
 echo 
 echo "Bootstrapping the installation files - JamOrHam - Navid200"
@@ -14,8 +14,25 @@ echo
 # Regardless, we need to remember this destructive nature of bootstrap.
 # One must always run Install Nightscout phase 1 after running bootstrap.
 
+####### Keep this marked content synchronized with the contents of the wait_4_completion.sh file ###
+####################### Wait for updates to complete
+count=0
+apt_present=1
+while [ $apt_present -gt 0 ]
+do
+running_apt=$(ps aux | grep '[a]pt') 
+if [ "$running_apt" = "" ]
+then
+  apt_present=0
+else
+  echo " $count  Waiting for background processes to complete"
+  sleep 10
+  count=$((count+10))
+fi
+done
+#######################################################################
 sudo apt-get update
-sudo apt-get install dialog
+sudo apt-get install -y dialog git
 
 ubversion="$(cat /etc/issue | awk '{print $2}')"
 
@@ -51,6 +68,7 @@ The Ubuntu installation option is incorrect. Please refer to the guide for detai
   exit
 fi 
 
+clear
 dialog --colors --yesno "              \Zr Google Cloud Nightscout \Zn\n\n\n\
 This software and its associated online instructions are provided “as is,” without any warranties, express or implied. By using this software, you accept full responsibility and assume all risks associated with its use.\n\n\
 The developers and contributors shall not be held liable for any damages, losses, or other consequences arising from the use of this software or its documentation.\n\n\
@@ -62,8 +80,7 @@ then
   clear
   exit
 fi
-
-  sudo apt-get install -y  git 
+clear
 
 if [ ! -s /xDrip ]
 then
@@ -76,6 +93,9 @@ sudo mkdir scripts
 
 cd /srv
 sudo rm -rf *
+echo
+echo "     Please be patient."
+echo
 sudo git clone https://github.com/jamorham/nightscout-vps.git  # ✅✅✅✅✅ Main - Uncomment before PR.
 #sudo git clone https://github.com/Navid200/cgm-remote-monitor.git  # ⛔⛔⛔⛔⛔ For test - Comment out before PR.
 
@@ -83,7 +103,7 @@ ls > /tmp/repo
 sudo mv -f /tmp/repo .    # The repository name is now in /srv/repo
 cd "$(< repo)"
 sudo git checkout vps-2  # ✅✅✅✅✅ Main - Uncomment before PR.
-#sudo git checkout No_ok_Reboot_counter  # ⛔⛔⛔⛔⛔ For test - Comment out before PR.
+#sudo git checkout MoreWaits_Test  # ⛔⛔⛔⛔⛔ For test - Comment out before PR.
 
 sudo git branch > /tmp/branch
 grep "*" /tmp/branch | awk '{print $2}' > /tmp/brnch

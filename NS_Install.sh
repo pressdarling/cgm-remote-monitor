@@ -34,13 +34,15 @@ swapon 2>/dev/null /var/SWAP
 # Please don't add any utility installs here.  Please instead, add them to update_packages.sh.
 /xDrip/scripts/update_packages.sh
 
-apt-get update
-
 # Create mongo user and admin.
-wait  # Wait for all background processes to complete
-echo -e "use Nightscout\ndb.createUser({user: \"username\", pwd: \"password\", roles:[\"readWrite\"]})\nquit()" | mongosh 
-wait  # Wait for all background processes to complete
-echo -e "use admin\ndb.createUser({ user: \"mongoadmin\" , pwd: \"mongoadmin\", roles: [\"userAdminAnyDatabase\", \"dbAdminAnyDatabase\", \"readWriteAnyDatabase\"]})\nquit()" | mongosh 
+/xDrip/scripts/wait_4_completion.sh
+
+wait  # Wait for background processes to complete
+mongosh Nightscout --eval 'db.createUser({user: "username", pwd: "password", roles:["readWrite"]})'
+
+wait  # Wait for background processes to complete
+mongosh admin --eval 'db.createUser({user: "mongoadmin", pwd: "mongoadmin", roles:["userAdminAnyDatabase", "dbAdminAnyDatabase", "readWriteAnyDatabase"]})'
+
 cd /srv 
 
 echo "Installing Nightscout"
@@ -48,6 +50,8 @@ cd "$(< repo)"
 git reset --hard  # delete any local edits.
 git pull  # Update database from remote.
 
+/xDrip/scripts/wait_4_completion.sh
+apt-get update
 npm install
 # sudo npm run postinstall
 npm run-script post-generate-keys
